@@ -366,7 +366,7 @@ plot(changeAnalysis)
 crs(changeAnalysis)
 
 # calculate change area:
-# pixel size 10m*10m:: 1km²=1.000.000m² ;; 1ha=10.000m²...
+# pixel size 10m*10m:: 1kmÂ²=1.000.000mÂ² ;; 1ha=10.000mÂ²...
 
   ## calculate area of flooded at mean depths but not flooded at low depths (in ha):
 NrPix1 <- freq(changeAnalysis, digits = 0, value = 1.0, useNA = "ifany") / 10000
