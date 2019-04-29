@@ -347,7 +347,8 @@ cvaTEST02 <- rasterCVA(water_mask_low[[1:2]],water_mask_mean[[1:2]])
 
 #simpler and straight-forward way:
 changeAnalysis <- sc_mean$map %in% 5 - sc_low$map %in% 5 #    substract low level from mean level
-  
+## changeAnalysis <- SCmean %in% 5 -SClow %in% 5
+
   ## now there is a layer indicating:
   ##      => changes from "WATER" to "NO WATER" for positive values
   ##      => changes from "NO WATER" to "WATER" for negative values, and
@@ -400,6 +401,7 @@ plot(waterlevels.df$meanV, col = "white",
      ylab = "Water depth")
 lines(waterlevels.df$minV, col="red") 
 lines(waterlevels.df$maxV, col="blue")
+water_depth <- sort(waterlevels.df$meanV[], decreasing = TRUE)
 plot(water_depth,
      main = "Sorted water level measurements",
      xlab = "Recording day",
@@ -416,6 +418,8 @@ dev.off()
 # plot study area:
 
 view_aoi()
+germany <- getData("GADM",country="DEU",level=1)
+plot(germany)
 
 
 # plot false-color Sentinel-2 images:
@@ -464,7 +468,8 @@ grid
 layout(grid)
 plot(td_low, 
      col = "red", 
-     main = "Training areas low level",
+     main = "Training areas",
+     sub = "low level = red; mean leve = blue",
      xlab = "UTM Westing Coordinate (m)",
      ylab = "UTM Northing Coordinate (m)")
 plotRGB(mainschleife_low, 3, 2, 1, 
